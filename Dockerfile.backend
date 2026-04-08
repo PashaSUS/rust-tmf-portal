@@ -1,6 +1,6 @@
-FROM rust:1.87-slim AS builder
+FROM rust:1.88-slim AS rust-builder
 
-RUN apt-get update && apt-get install -y pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y pkg-config libssl-dev curl && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -10,18 +10,29 @@ COPY portal-backend/ portal-backend/
 
 RUN cargo build --release --bin portal-backend
 
+FROM node:22-slim AS frontend-builder
+
+WORKDIR /app
+COPY portal-frontend/package.json portal-frontend/package-lock.json* ./
+RUN npm install
+
+COPY portal-frontend/ ./
+RUN npm run build
+
 FROM debian:bookworm-slim
 
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /app/target/release/portal-backend /usr/local/bin/portal-backend
+COPY --from=rust-builder /app/target/release/portal-backend /usr/local/bin/portal-backend
+COPY --from=frontend-builder /app/dist /app/static
 
 WORKDIR /app
 COPY config.json ./config.json
 
 ENV TMF_CONFIG_PATH=/app/config.json
+ENV STATIC_DIR=/app/static
 ENV RUST_LOG=info
 
-EXPOSE 8080
+EXPOSE 4200
 
 CMD ["portal-backend"]

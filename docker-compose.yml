@@ -2,35 +2,28 @@ services:
   seq:
     image: datalust/seq:latest
     ports:
-      - "5341:80"
+      - "4201:80"
     environment:
       ACCEPT_EULA: "Y"
+      SEQ_FIRSTRUN_NOAUTHENTICATION: "true"
     volumes:
       - seq-data:/data
 
-  backend:
+  portal:
     build:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-      - "8080:8080"
+      - "4200:4200"
     volumes:
-      - ./config.json:/app/config.json:ro
+      - ./config.docker.json:/app/config.json:ro
     environment:
       - RUST_LOG=info
       - TMF_CONFIG_PATH=/app/config.json
+      - STATIC_DIR=/app/static
       - SEQ_URL=http://seq:80
     depends_on:
       - seq
-
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
 
 volumes:
   seq-data:

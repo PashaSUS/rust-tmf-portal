@@ -1,0 +1,81 @@
+@echo off
+setlocal enabledelayedexpansion
+
+echo ============================================
+echo   TMF Portal - Setup
+echo ============================================
+echo.
+
+:: Check Docker
+where docker >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERROR] Docker is not installed or not in PATH.
+    echo         Install Docker Desktop: https://www.docker.com/products/docker-desktop
+    exit /b 1
+)
+
+docker info >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERROR] Docker daemon is not running. Start Docker Desktop first.
+    exit /b 1
+)
+
+echo [OK] Docker found
+
+:: Check docker compose
+docker compose version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERROR] Docker Compose not available. Install Docker Desktop with Compose.
+    exit /b 1
+)
+
+echo [OK] Docker Compose found
+echo.
+
+:: Generate docker config.json if it doesn't exist
+if not exist "config.docker.json" (
+    echo [INFO] Creating config.docker.json for Docker deployment...
+    echo         Edit config.docker.json to set your TMF API base_url values.
+
+    :: Copy config.json and patch host for Docker (0.0.0.0 instead of 127.0.0.1)
+    powershell -NoProfile -Command "$c = Get-Content 'config.json' -Raw | ConvertFrom-Json; $c.portal.host = '0.0.0.0'; $c.portal.port = 4200; $c.portal.cors_origin = '*'; $c.seq.url = 'http://seq:80'; $j = $c | ConvertTo-Json -Depth 10; [System.IO.File]::WriteAllText('config.docker.json', $j, [System.Text.UTF8Encoding]::new($false))"
+
+    echo [OK] config.docker.json created
+) else (
+    echo [OK] config.docker.json already exists
+)
+
+echo.
+echo ============================================
+echo   Building and starting containers...
+echo ============================================
+echo.
+echo   Portal (API + UI):  http://localhost:4200
+echo   Swagger UI:         http://localhost:4200/swagger-ui/
+echo   Seq Logs:           http://localhost:4201
+echo.
+
+docker compose -f docker-compose.yml build
+if %errorlevel% neq 0 (
+    echo [ERROR] Build failed.
+    exit /b 1
+)
+
+docker compose -f docker-compose.yml up -d
+if %errorlevel% neq 0 (
+    echo [ERROR] Failed to start containers.
+    exit /b 1
+)
+
+echo.
+echo ============================================
+echo   TMF Portal is running!
+echo ============================================
+echo.
+echo   Portal:   http://localhost:4200
+echo   Swagger:  http://localhost:4200/swagger-ui/
+echo   Seq:      http://localhost:4201
+echo.
+echo   Stop with:  docker compose down
+echo   Logs with:  docker compose logs -f portal
+echo.

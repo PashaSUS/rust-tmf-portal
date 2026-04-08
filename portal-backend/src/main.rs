@@ -63,16 +63,27 @@ async fn main() -> std::io::Result<()> {
 
     let openapi = openapi::ApiDoc::openapi();
 
+    let static_dir = std::env::var("STATIC_DIR")
+        .unwrap_or_else(|_| "./static".to_string());
+    let serve_static = std::path::Path::new(&static_dir).is_dir();
+    if serve_static {
+        tracing::info!(path = %static_dir, "Serving frontend static files");
+    }
+
     tracing::info!(host = %host, port = port, "Starting portal backend");
 
     HttpServer::new(move || {
-        let cors = Cors::default()
-            .allowed_origin(&cors_origin)
-            .allowed_methods(vec!["GET", "POST", "PATCH", "DELETE", "OPTIONS"])
-            .allowed_headers(vec!["Content-Type", "Accept", "Authorization"])
-            .max_age(3600);
+        let cors = if cors_origin == "*" {
+            Cors::permissive()
+        } else {
+            Cors::default()
+                .allowed_origin(&cors_origin)
+                .allowed_methods(vec!["GET", "POST", "PATCH", "DELETE", "OPTIONS"])
+                .allowed_headers(vec!["Content-Type", "Accept", "Authorization"])
+                .max_age(3600)
+        };
 
-        App::new()
+        let app = App::new()
             .wrap(cors)
             .wrap(tracing_actix_web::TracingLogger::default())
             .app_data(app_state.clone())
@@ -80,7 +91,21 @@ async fn main() -> std::io::Result<()> {
                 SwaggerUi::new("/swagger-ui/{_:.*}")
                     .url("/api-docs/openapi.json", openapi.clone()),
             )
-            .configure(routes::configure)
+            .configure(routes::configure);
+
+        if serve_static {
+            app.service(
+                actix_files::Files::new("/", &static_dir)
+                    .index_file("index.html")
+                    .default_handler(
+                        actix_files::NamedFile::open(
+                            format!("{}/index.html", static_dir)
+                        ).expect("index.html must exist in static dir")
+                    ),
+            )
+        } else {
+            app
+        }
     })
     .bind((host.as_str(), port))?
     .run()
