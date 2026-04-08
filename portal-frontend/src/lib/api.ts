@@ -1,6 +1,12 @@
 import type { ApiStatusResponse, ListResponse } from "./types";
 
-const BASE = "";
+declare global {
+  interface Window {
+    __RUNTIME_CONFIG?: { apiUrl?: string };
+  }
+}
+
+const BASE = window.__RUNTIME_CONFIG?.apiUrl ?? "";
 
 async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${url}`, {

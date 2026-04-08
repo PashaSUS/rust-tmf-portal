@@ -35,7 +35,7 @@ echo.
 :: Always regenerate config.docker.json from config.json
 echo [INFO] Generating config.docker.json from config.json...
 
-powershell -NoProfile -Command "$c = Get-Content 'config.json' -Raw | ConvertFrom-Json; $c.portal.host = '0.0.0.0'; $c.portal.port = 4200; $c.portal.cors_origin = '*'; $c.seq.url = 'http://seq:80'; $j = $c | ConvertTo-Json -Depth 10; [System.IO.File]::WriteAllText('config.docker.json', $j, [System.Text.UTF8Encoding]::new($false))"
+powershell -NoProfile -Command "$c = Get-Content 'config.json' -Raw | ConvertFrom-Json; $c.portal.host = '0.0.0.0'; $c.portal.port = 4201; $c.portal.cors_origin = '*'; $c.seq.url = 'http://seq:80'; $j = $c | ConvertTo-Json -Depth 10; [System.IO.File]::WriteAllText('config.docker.json', $j, [System.Text.UTF8Encoding]::new($false))"
 
 echo [OK] config.docker.json generated
 
@@ -44,9 +44,10 @@ echo ============================================
 echo   Building and starting containers...
 echo ============================================
 echo.
-echo   Portal (API + UI):  http://localhost:4200
-echo   Swagger UI:         http://localhost:4200/swagger-ui/
-echo   Seq Logs:           http://localhost:4201
+echo   Portal (Frontend):  http://localhost:4200
+echo   Backend API:        http://localhost:4201
+echo   Swagger UI:         http://localhost:4201/swagger-ui/
+echo   Seq Logs:           http://localhost:4202
 echo.
 
 docker compose -f docker-compose.yml build
@@ -67,9 +68,10 @@ echo   TMF Portal is running!
 echo ============================================
 echo.
 echo   Portal:   http://localhost:4200
-echo   Swagger:  http://localhost:4200/swagger-ui/
-echo   Seq:      http://localhost:4201
+echo   API:      http://localhost:4201
+echo   Swagger:  http://localhost:4201/swagger-ui/
+echo   Seq:      http://localhost:4202
 echo.
 echo   Stop with:  docker compose down
-echo   Logs with:  docker compose logs -f portal
+echo   Logs with:  docker compose logs -f
 echo.
