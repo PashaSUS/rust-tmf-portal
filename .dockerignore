@@ -1,0 +1,7 @@
+target/
+node_modules/
+dist/
+*.log
+.env
+portal-frontend/node_modules/
+portal-frontend/dist/

@@ -1,0 +1,823 @@
+{
+  "portal": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "cors_origin": "http://localhost:5173"
+  },
+  "seq": {
+    "url": "http://localhost:5341",
+    "api_key": ""
+  },
+  "apis": {
+    "tmf620": {
+      "name": "Product Catalog Management",
+      "domain": "Product",
+      "base_path": "productCatalogManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["catalog", "category", "productOffering", "productSpecification", "importJob", "exportJob"],
+      "base_url": ""
+    },
+    "tmf622": {
+      "name": "Product Ordering Management",
+      "domain": "Customer",
+      "base_path": "productOrderingManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["productOrder", "cancelProductOrder"],
+      "base_url": ""
+    },
+    "tmf629": {
+      "name": "Customer Management",
+      "domain": "Customer",
+      "base_path": "customerManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["customer"],
+      "base_url": ""
+    },
+    "tmf632": {
+      "name": "Party Management",
+      "domain": "BusinessPartner",
+      "base_path": "partyManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["individual", "organization"],
+      "base_url": ""
+    },
+    "tmf633": {
+      "name": "Service Catalog Management",
+      "domain": "Service",
+      "base_path": "serviceCatalogManagement",
+      "versions": ["v3", "v4"],
+      "version": "v4",
+      "resources": ["serviceCatalog", "serviceCategory", "serviceCandidate", "serviceSpecification"],
+      "base_url": ""
+    },
+    "tmf634": {
+      "name": "Resource Catalog Management",
+      "domain": "Resource",
+      "base_path": "resourceCatalogManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["resourceCatalog", "resourceCategory", "resourceCandidate", "resourceSpecification"],
+      "base_url": ""
+    },
+    "tmf635": {
+      "name": "Usage Management",
+      "domain": "Common",
+      "base_path": "usageManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["usage", "usageSpecification"],
+      "base_url": ""
+    },
+    "tmf637": {
+      "name": "Product Inventory Management",
+      "domain": "Product",
+      "base_path": "productInventoryManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["product"],
+      "base_url": ""
+    },
+    "tmf638": {
+      "name": "Service Inventory Management",
+      "domain": "Service",
+      "base_path": "serviceInventoryManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["service"],
+      "base_url": ""
+    },
+    "tmf639": {
+      "name": "Resource Inventory Management",
+      "domain": "Resource",
+      "base_path": "resourceInventoryManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["resource"],
+      "base_url": ""
+    },
+    "tmf640": {
+      "name": "Service Activation and Configuration",
+      "domain": "Service",
+      "base_path": "serviceActivationAndConfiguration",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["service", "monitor"],
+      "base_url": ""
+    },
+    "tmf641": {
+      "name": "Service Order Management",
+      "domain": "Service",
+      "base_path": "serviceOrderingManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["serviceOrder", "cancelServiceOrder"],
+      "base_url": ""
+    },
+    "tmf642": {
+      "name": "Alarm Management",
+      "domain": "Resource",
+      "base_path": "alarmManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["alarm", "ackAlarms", "clearAlarms", "commentAlarms", "groupAlarms", "unAckAlarms", "unGroupAlarms"],
+      "base_url": ""
+    },
+    "tmf644": {
+      "name": "Privacy Management",
+      "domain": "BusinessPartner",
+      "base_path": "privacyManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["partyPrivacyProfile", "partyPrivacyProfileType", "partyPrivacyAgreement"],
+      "base_url": ""
+    },
+    "tmf645": {
+      "name": "Service Qualification Management",
+      "domain": "Service",
+      "base_path": "serviceQualificationManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["checkServiceQualification", "queryServiceQualification"],
+      "base_url": ""
+    },
+    "tmf646": {
+      "name": "Appointment Management",
+      "domain": "Customer",
+      "base_path": "appointment",
+      "versions": ["v3", "v4"],
+      "version": "v4",
+      "resources": ["appointment", "searchTimeSlot"],
+      "base_url": ""
+    },
+    "tmf648": {
+      "name": "Quote Management",
+      "domain": "Customer",
+      "base_path": "quoteManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["quote"],
+      "base_url": ""
+    },
+    "tmf649": {
+      "name": "Performance Thresholding Management",
+      "domain": "Resource",
+      "base_path": "performanceThresholdManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["threshold"],
+      "base_url": ""
+    },
+    "tmf651": {
+      "name": "Agreement Management",
+      "domain": "BusinessPartner",
+      "base_path": "agreementManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["agreement", "agreementSpecification"],
+      "base_url": ""
+    },
+    "tmf652": {
+      "name": "Resource Order Management",
+      "domain": "Resource",
+      "base_path": "resourceOrderingManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["resourceOrder", "cancelResourceOrder"],
+      "base_url": ""
+    },
+    "tmf653": {
+      "name": "Service Test Management",
+      "domain": "Service",
+      "base_path": "serviceTestManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["serviceTest", "serviceTestSpecification"],
+      "base_url": ""
+    },
+    "tmf654": {
+      "name": "Prepay Balance Management",
+      "domain": "Customer",
+      "base_path": "prepayBalanceManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["bucket", "topupBalance", "adjustBalance", "transferBalance"],
+      "base_url": ""
+    },
+    "tmf655": {
+      "name": "Change Management",
+      "domain": "Common",
+      "base_path": "changeManagement",
+      "versions": ["v3", "v4"],
+      "version": "v4",
+      "resources": ["changeRequest"],
+      "base_url": ""
+    },
+    "tmf656": {
+      "name": "Service Problem Management",
+      "domain": "Service",
+      "base_path": "serviceProblemManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["serviceProblem"],
+      "base_url": ""
+    },
+    "tmf657": {
+      "name": "Service Quality Management",
+      "domain": "Service",
+      "base_path": "serviceQualityManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["serviceLevelObjective", "serviceLevelSpecification"],
+      "base_url": ""
+    },
+    "tmf658": {
+      "name": "Loyalty Management",
+      "domain": "Product",
+      "base_path": "loyaltyManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["loyaltyProgram", "loyaltyProgramMember"],
+      "base_url": ""
+    },
+    "tmf662": {
+      "name": "Entity Catalog Management",
+      "domain": "Common",
+      "base_path": "entityCatalogManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["entityCatalog", "entitySpecification", "entityCategory", "association", "associationSpecification"],
+      "base_url": ""
+    },
+    "tmf663": {
+      "name": "Shopping Cart Management",
+      "domain": "Customer",
+      "base_path": "shoppingCart",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["shoppingCart"],
+      "base_url": ""
+    },
+    "tmf664": {
+      "name": "Resource Function Activation Management",
+      "domain": "Resource",
+      "base_path": "resourceFunctionActivation",
+      "versions": ["v3", "v4"],
+      "version": "v4",
+      "resources": ["resourceFunction", "heal", "migrate", "scale"],
+      "base_url": ""
+    },
+    "tmf666": {
+      "name": "Account Management",
+      "domain": "BusinessPartner",
+      "base_path": "accountManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["billingAccount", "financialAccount", "partyAccount", "settlementAccount"],
+      "base_url": ""
+    },
+    "tmf667": {
+      "name": "Document Management",
+      "domain": "Common",
+      "base_path": "documentManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["document"],
+      "base_url": ""
+    },
+    "tmf668": {
+      "name": "Partnership Management",
+      "domain": "BusinessPartner",
+      "base_path": "partnershipManagement",
+      "versions": ["v3", "v4"],
+      "version": "v4",
+      "resources": ["partnership", "partnershipSpecification"],
+      "base_url": ""
+    },
+    "tmf669": {
+      "name": "Party Role Management",
+      "domain": "BusinessPartner",
+      "base_path": "partyRoleManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["partyRole"],
+      "base_url": ""
+    },
+    "tmf670": {
+      "name": "Payment Method Management",
+      "domain": "Customer",
+      "base_path": "paymentMethodManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["paymentMethod"],
+      "base_url": ""
+    },
+    "tmf671": {
+      "name": "Promotion Management",
+      "domain": "Customer",
+      "base_path": "promotionManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["promotion"],
+      "base_url": ""
+    },
+    "tmf672": {
+      "name": "User Roles and Permissions Management",
+      "domain": "BusinessPartner",
+      "base_path": "userRolesPermissions",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["permission", "userRole"],
+      "base_url": ""
+    },
+    "tmf673": {
+      "name": "Geographic Address Management",
+      "domain": "BusinessPartner",
+      "base_path": "geographicAddressManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["geographicAddress", "geographicAddressValidation", "geographicSubAddress"],
+      "base_url": ""
+    },
+    "tmf674": {
+      "name": "Geographic Site Management",
+      "domain": "BusinessPartner",
+      "base_path": "geographicSiteManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["geographicSite"],
+      "base_url": ""
+    },
+    "tmf675": {
+      "name": "Geographic Location Management",
+      "domain": "BusinessPartner",
+      "base_path": "geographicLocationManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["geographicLocation"],
+      "base_url": ""
+    },
+    "tmf676": {
+      "name": "Payment Management",
+      "domain": "Customer",
+      "base_path": "paymentManagement",
+      "versions": ["v1", "v4"],
+      "version": "v4",
+      "resources": ["payment", "refund"],
+      "base_url": ""
+    },
+    "tmf677": {
+      "name": "Usage Consumption Management",
+      "domain": "Customer",
+      "base_path": "usageConsumptionManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["usageConsumptionReport", "usageConsumptionReportRequest"],
+      "base_url": ""
+    },
+    "tmf678": {
+      "name": "Customer Bill Management",
+      "domain": "Customer",
+      "base_path": "customerBillManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["customerBill", "appliedCustomerBillingRate"],
+      "base_url": ""
+    },
+    "tmf679": {
+      "name": "Product Offering Qualification Management",
+      "domain": "Product",
+      "base_path": "productOfferingQualificationManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["productOfferingQualification"],
+      "base_url": ""
+    },
+    "tmf680": {
+      "name": "Recommendation Management",
+      "domain": "Customer",
+      "base_path": "recommendation",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["recommendation"],
+      "base_url": ""
+    },
+    "tmf681": {
+      "name": "Communication Management",
+      "domain": "Common",
+      "base_path": "communicationManagement",
+      "versions": ["v3", "v4"],
+      "version": "v4",
+      "resources": ["communicationMessage"],
+      "base_url": ""
+    },
+    "tmf683": {
+      "name": "Party Interaction Management",
+      "domain": "BusinessPartner",
+      "base_path": "partyInteractionManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["partyInteraction"],
+      "base_url": ""
+    },
+    "tmf684": {
+      "name": "Shipment Tracking",
+      "domain": "Common",
+      "base_path": "shipmentTracking",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["shipment", "shipmentTracking"],
+      "base_url": ""
+    },
+    "tmf685": {
+      "name": "Resource Pool Management",
+      "domain": "Resource",
+      "base_path": "resourcePoolManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["resourcePool", "reservation"],
+      "base_url": ""
+    },
+    "tmf687": {
+      "name": "Stock Management",
+      "domain": "Product",
+      "base_path": "stockManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["productStock", "checkProductStock"],
+      "base_url": ""
+    },
+    "tmf688": {
+      "name": "Event Management",
+      "domain": "Common",
+      "base_path": "eventManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["event", "topic"],
+      "base_url": ""
+    },
+    "tmf691": {
+      "name": "Federated Identity Management",
+      "domain": "BusinessPartner",
+      "base_path": "federatedIdentityManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["userIdentity"],
+      "base_url": ""
+    },
+    "tmf696": {
+      "name": "Risk Management",
+      "domain": "BusinessPartner",
+      "base_path": "riskManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["riskAssessment", "partyRoleRiskAssessment", "productOfferingRiskAssessment"],
+      "base_url": ""
+    },
+    "tmf697": {
+      "name": "Work Order Management",
+      "domain": "Common",
+      "base_path": "workOrderManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["workOrder"],
+      "base_url": ""
+    },
+    "tmf699": {
+      "name": "Sales Management",
+      "domain": "MarketingSales",
+      "base_path": "salesManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["salesLead", "salesOpportunity"],
+      "base_url": ""
+    },
+    "tmf700": {
+      "name": "Shipping Order Management",
+      "domain": "Common",
+      "base_path": "shippingOrderManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["shippingOrder"],
+      "base_url": ""
+    },
+    "tmf701": {
+      "name": "Process Flow Management",
+      "domain": "Common",
+      "base_path": "processFlowManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["processFlow", "taskFlow"],
+      "base_url": ""
+    },
+    "tmf702": {
+      "name": "Resource Activation and Configuration",
+      "domain": "Resource",
+      "base_path": "resourceActivationAndConfiguration",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["resource", "monitor"],
+      "base_url": ""
+    },
+    "tmf703": {
+      "name": "Entity Inventory Management",
+      "domain": "Common",
+      "base_path": "entityInventoryManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["entity", "association"],
+      "base_url": ""
+    },
+    "tmf704": {
+      "name": "Test Case Management",
+      "domain": "Common",
+      "base_path": "testCaseManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["testCase"],
+      "base_url": ""
+    },
+    "tmf705": {
+      "name": "Test Environment Management",
+      "domain": "Common",
+      "base_path": "testEnvironmentManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["testEnvironment"],
+      "base_url": ""
+    },
+    "tmf706": {
+      "name": "Test Data Management",
+      "domain": "Common",
+      "base_path": "testDataManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["testData"],
+      "base_url": ""
+    },
+    "tmf707": {
+      "name": "Test Result Management",
+      "domain": "Common",
+      "base_path": "testResultManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["testResult"],
+      "base_url": ""
+    },
+    "tmf708": {
+      "name": "Test Execution Management",
+      "domain": "Common",
+      "base_path": "testExecutionManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["testExecution"],
+      "base_url": ""
+    },
+    "tmf709": {
+      "name": "Test Scenario Management",
+      "domain": "Common",
+      "base_path": "testScenarioManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["testScenario"],
+      "base_url": ""
+    },
+    "tmf710": {
+      "name": "General Test Artifact Management",
+      "domain": "Common",
+      "base_path": "generalTestArtifactManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["testArtifact"],
+      "base_url": ""
+    },
+    "tmf716": {
+      "name": "Resource Reservation",
+      "domain": "Resource",
+      "base_path": "resourceReservation",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["reservation"],
+      "base_url": ""
+    },
+    "tmf717": {
+      "name": "Customer360 Management",
+      "domain": "Customer",
+      "base_path": "customer360Management",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["customer360"],
+      "base_url": ""
+    },
+    "tmf720": {
+      "name": "Digital Identity Management",
+      "domain": "BusinessPartner",
+      "base_path": "digitalIdentityManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["digitalIdentity"],
+      "base_url": ""
+    },
+    "tmf724": {
+      "name": "Incident Management",
+      "domain": "Common",
+      "base_path": "incidentManagement",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["incident"],
+      "base_url": ""
+    },
+    "tmf628": {
+      "name": "Performance Management",
+      "domain": "Resource",
+      "base_path": "performanceManagement",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["measurementCollectionJob", "onDemandCollection", "performanceIndicatorGroupSpecification", "performanceIndicatorSpecification"],
+      "base_url": ""
+    },
+    "tmf621": {
+      "name": "Trouble Ticket Management",
+      "domain": "Common",
+      "base_path": "troubleTicket",
+      "versions": ["v4", "v5"],
+      "version": "v4",
+      "resources": ["troubleTicket"],
+      "base_url": ""
+    },
+    "tmf730": {
+      "name": "Software and Compute Management",
+      "domain": "Resource",
+      "base_path": "softwareAndComputeManagement",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["softwareResource", "computeResource"],
+      "base_url": ""
+    },
+    "tmf735": {
+      "name": "CDR Transaction Management",
+      "domain": "Common",
+      "base_path": "cdrTransactionManagement",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["cdrTransaction"],
+      "base_url": ""
+    },
+    "tmf736": {
+      "name": "Revenue Sharing Algorithm Management",
+      "domain": "BusinessPartner",
+      "base_path": "revenueSharingAlgorithmManagement",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["revenueSharingAlgorithm"],
+      "base_url": ""
+    },
+    "tmf737": {
+      "name": "Revenue Sharing Report Management",
+      "domain": "Common",
+      "base_path": "revenueSharingReportManagement",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["revenueSharingReport"],
+      "base_url": ""
+    },
+    "tmf738": {
+      "name": "Revenue Sharing Model Management",
+      "domain": "Common",
+      "base_path": "revenueSharingModelManagement",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["revenueSharingModel"],
+      "base_url": ""
+    },
+    "tmf759": {
+      "name": "Private Optimized Binding",
+      "domain": "Resource",
+      "base_path": "privateOptimizedBinding",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["binding"],
+      "base_url": ""
+    },
+    "tmf764": {
+      "name": "Cost Management",
+      "domain": "Common",
+      "base_path": "costManagement",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["cost"],
+      "base_url": ""
+    },
+    "tmf771": {
+      "name": "Resource Usage",
+      "domain": "Resource",
+      "base_path": "resourceUsage",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["resourceUsage"],
+      "base_url": ""
+    },
+    "tmf777": {
+      "name": "Outage Management",
+      "domain": "Service",
+      "base_path": "outageManagement",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["outage"],
+      "base_url": ""
+    },
+    "tmf908": {
+      "name": "IoT Agent and Device Management",
+      "domain": "Resource",
+      "base_path": "iotAgentAndDeviceManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["iotDevice", "iotAgent"],
+      "base_url": ""
+    },
+    "tmf909": {
+      "name": "Network as a Service Management",
+      "domain": "Service",
+      "base_path": "naasManagement",
+      "versions": ["v3", "v4"],
+      "version": "v4",
+      "resources": ["naasService"],
+      "base_url": ""
+    },
+    "tmf910": {
+      "name": "Self Care Component Suite",
+      "domain": "Product",
+      "base_path": "selfCareManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["selfCare"],
+      "base_url": ""
+    },
+    "tmf914": {
+      "name": "IoT Service Management",
+      "domain": "Service",
+      "base_path": "iotServiceManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["iotService"],
+      "base_url": ""
+    },
+    "tmf915": {
+      "name": "AI Management",
+      "domain": "Common",
+      "base_path": "aiManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["aiModel", "aiTrainingJob"],
+      "base_url": ""
+    },
+    "tmf921": {
+      "name": "Intent Management",
+      "domain": "Service",
+      "base_path": "intentManagement",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["intent", "intentReport"],
+      "base_url": ""
+    },
+    "tmf924": {
+      "name": "DCS 5GSlice Service Activation",
+      "domain": "Service",
+      "base_path": "5gSliceServiceActivation",
+      "versions": ["v4"],
+      "version": "v4",
+      "resources": ["networkSlice"],
+      "base_url": ""
+    },
+    "tmf931": {
+      "name": "Open Gateway Onboarding and Ordering",
+      "domain": "Product",
+      "base_path": "openGatewayOnboardingAndOrdering",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["onboarding", "ordering"],
+      "base_url": ""
+    },
+    "tmf936": {
+      "name": "Open Gateway Product Catalog",
+      "domain": "Product",
+      "base_path": "openGatewayProductCatalog",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["productCatalog"],
+      "base_url": ""
+    },
+    "tmf937": {
+      "name": "Open Gateway Product Usage",
+      "domain": "Product",
+      "base_path": "openGatewayProductUsage",
+      "versions": ["v5"],
+      "version": "v5",
+      "resources": ["productUsage"],
+      "base_url": ""
+    }
+  }
+}

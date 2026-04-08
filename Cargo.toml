@@ -1,0 +1,3 @@
+[workspace]
+members = ["tmf-client", "portal-backend"]
+resolver = "2"

@@ -1,0 +1,27 @@
+FROM rust:1.87-slim AS builder
+
+RUN apt-get update && apt-get install -y pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY Cargo.toml ./
+COPY tmf-client/ tmf-client/
+COPY portal-backend/ portal-backend/
+
+RUN cargo build --release --bin portal-backend
+
+FROM debian:bookworm-slim
+
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /app/target/release/portal-backend /usr/local/bin/portal-backend
+
+WORKDIR /app
+COPY config.json ./config.json
+
+ENV TMF_CONFIG_PATH=/app/config.json
+ENV RUST_LOG=info
+
+EXPOSE 8080
+
+CMD ["portal-backend"]
