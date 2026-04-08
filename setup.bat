@@ -32,18 +32,12 @@ if %errorlevel% neq 0 (
 echo [OK] Docker Compose found
 echo.
 
-:: Generate docker config.json if it doesn't exist
-if not exist "config.docker.json" (
-    echo [INFO] Creating config.docker.json for Docker deployment...
-    echo         Edit config.docker.json to set your TMF API base_url values.
+:: Always regenerate config.docker.json from config.json
+echo [INFO] Generating config.docker.json from config.json...
 
-    :: Copy config.json and patch host for Docker (0.0.0.0 instead of 127.0.0.1)
-    powershell -NoProfile -Command "$c = Get-Content 'config.json' -Raw | ConvertFrom-Json; $c.portal.host = '0.0.0.0'; $c.portal.port = 4200; $c.portal.cors_origin = '*'; $c.seq.url = 'http://seq:80'; $j = $c | ConvertTo-Json -Depth 10; [System.IO.File]::WriteAllText('config.docker.json', $j, [System.Text.UTF8Encoding]::new($false))"
+powershell -NoProfile -Command "$c = Get-Content 'config.json' -Raw | ConvertFrom-Json; $c.portal.host = '0.0.0.0'; $c.portal.port = 4200; $c.portal.cors_origin = '*'; $c.seq.url = 'http://seq:80'; $j = $c | ConvertTo-Json -Depth 10; [System.IO.File]::WriteAllText('config.docker.json', $j, [System.Text.UTF8Encoding]::new($false))"
 
-    echo [OK] config.docker.json created
-) else (
-    echo [OK] config.docker.json already exists
-)
+echo [OK] config.docker.json generated
 
 echo.
 echo ============================================

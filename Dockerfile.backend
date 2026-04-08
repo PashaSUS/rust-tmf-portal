@@ -27,7 +27,7 @@ COPY --from=rust-builder /app/target/release/portal-backend /usr/local/bin/porta
 COPY --from=frontend-builder /app/dist /app/static
 
 WORKDIR /app
-COPY config.json ./config.json
+COPY config.docker.json ./config.json
 
 ENV TMF_CONFIG_PATH=/app/config.json
 ENV STATIC_DIR=/app/static

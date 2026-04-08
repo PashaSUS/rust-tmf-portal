@@ -15,8 +15,6 @@ services:
       dockerfile: Dockerfile.backend
     ports:
       - "4200:4200"
-    volumes:
-      - ./config.docker.json:/app/config.json:ro
     environment:
       - RUST_LOG=info
       - TMF_CONFIG_PATH=/app/config.json
